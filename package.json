@@ -1,0 +1,31 @@
+{
+  "name": "grpc-bus-websocket-client",
+  "version": "0.1.0",
+  "description": "This client library connects a browser's JavaScript context to standard GRPC service(s) via a WebSocket Proxy Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/gabrielgrant/grpc-bus-websocket-proxy-client.git"
+  },
+  "keywords": [
+    "browser",
+    "grpc",
+    "websocket",
+    "proxy",
+    "client"
+  ],
+  "author": "Gabriel Grant <g@briel.ca> (http://gabrielgrant.ca)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabrielgrant/grpc-bus-websocket-proxy-client/issues"
+  },
+  "homepage": "https://github.com/gabrielgrant/grpc-bus-websocket-proxy-client#readme",
+  "dependencies": {
+    "grpc-bus": "1.0.0",
+    "protobufjs": "^5.0.1",
+    "rsvp": "^3.3.3"
+  }
+}
