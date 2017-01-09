@@ -2202,384 +2202,7 @@ new GBC("ws://localhost:8081/", 'helloworld.proto', {helloworld: {Greeter: 'loca
 
 // vim: tabstop=8 expandtab shiftwidth=2 softtabstop=2
 
-},{"../index.js":9}],8:[function(require,module,exports){
-module.exports={
-    "package": "grpcbus",
-    "messages": [
-        {
-            "name": "GBClientMessage",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "GBCreateService",
-                    "name": "service_create",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBReleaseService",
-                    "name": "service_release",
-                    "id": 2
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBCreateCall",
-                    "name": "call_create",
-                    "id": 3
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBCallEnd",
-                    "name": "call_end",
-                    "id": 4
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBSendCall",
-                    "name": "call_send",
-                    "id": 5
-                }
-            ]
-        },
-        {
-            "name": "GBServerMessage",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "GBCreateServiceResult",
-                    "name": "service_create",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBReleaseServiceResult",
-                    "name": "service_release",
-                    "id": 2
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBCreateCallResult",
-                    "name": "call_create",
-                    "id": 3
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBCallEvent",
-                    "name": "call_event",
-                    "id": 4
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBCallEnded",
-                    "name": "call_ended",
-                    "id": 5
-                }
-            ]
-        },
-        {
-            "name": "GBServiceInfo",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "string",
-                    "name": "endpoint",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "string",
-                    "name": "service_id",
-                    "id": 2
-                }
-            ]
-        },
-        {
-            "name": "GBCreateService",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBServiceInfo",
-                    "name": "service_info",
-                    "id": 2
-                }
-            ]
-        },
-        {
-            "name": "GBReleaseService",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 1
-                }
-            ]
-        },
-        {
-            "name": "GBCallInfo",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "string",
-                    "name": "method_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "bytes",
-                    "name": "bin_argument",
-                    "id": 2
-                }
-            ]
-        },
-        {
-            "name": "GBCreateCall",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "call_id",
-                    "id": 2
-                },
-                {
-                    "rule": "optional",
-                    "type": "GBCallInfo",
-                    "name": "info",
-                    "id": 3
-                }
-            ]
-        },
-        {
-            "name": "GBCallEnded",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "call_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 2
-                }
-            ]
-        },
-        {
-            "name": "GBEndCall",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "call_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 2
-                }
-            ]
-        },
-        {
-            "name": "GBSendCall",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "call_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 2
-                },
-                {
-                    "rule": "optional",
-                    "type": "bytes",
-                    "name": "bin_data",
-                    "id": 3
-                },
-                {
-                    "rule": "optional",
-                    "type": "bool",
-                    "name": "is_end",
-                    "id": 4
-                }
-            ]
-        },
-        {
-            "name": "GBCreateServiceResult",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "ECreateServiceResult",
-                    "name": "result",
-                    "id": 2
-                },
-                {
-                    "rule": "optional",
-                    "type": "string",
-                    "name": "error_details",
-                    "id": 3
-                }
-            ],
-            "enums": [
-                {
-                    "name": "ECreateServiceResult",
-                    "values": [
-                        {
-                            "name": "SUCCESS",
-                            "id": 0
-                        },
-                        {
-                            "name": "INVALID_ID",
-                            "id": 1
-                        },
-                        {
-                            "name": "GRPC_ERROR",
-                            "id": 2
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "GBReleaseServiceResult",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 1
-                }
-            ]
-        },
-        {
-            "name": "GBCreateCallResult",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "call_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 4
-                },
-                {
-                    "rule": "optional",
-                    "type": "ECreateCallResult",
-                    "name": "result",
-                    "id": 2
-                },
-                {
-                    "rule": "optional",
-                    "type": "string",
-                    "name": "error_details",
-                    "id": 3
-                }
-            ],
-            "enums": [
-                {
-                    "name": "ECreateCallResult",
-                    "values": [
-                        {
-                            "name": "SUCCESS",
-                            "id": 0
-                        },
-                        {
-                            "name": "INVALID_ID",
-                            "id": 1
-                        },
-                        {
-                            "name": "GRPC_ERROR",
-                            "id": 2
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "GBCallEvent",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "call_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 4
-                },
-                {
-                    "rule": "optional",
-                    "type": "string",
-                    "name": "event",
-                    "id": 2
-                },
-                {
-                    "rule": "optional",
-                    "type": "string",
-                    "name": "json_data",
-                    "id": 3
-                },
-                {
-                    "rule": "optional",
-                    "type": "bytes",
-                    "name": "bin_data",
-                    "id": 5
-                }
-            ]
-        },
-        {
-            "name": "GBCallEnd",
-            "fields": [
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "call_id",
-                    "id": 1
-                },
-                {
-                    "rule": "optional",
-                    "type": "int32",
-                    "name": "service_id",
-                    "id": 2
-                }
-            ]
-        }
-    ]
-}
-},{}],9:[function(require,module,exports){
+},{"../index.js":8}],8:[function(require,module,exports){
 //
 // GRPC-Bus-Websocket-Client - Connect to standard GRPC service(s) via a WebSocket proxy.
 //
@@ -2631,11 +2254,16 @@ GBC.prototype.connect = function() {
     }
     ws.onerror = reject;
   });
-  var gbTree = protobuf.loadJson(require('./grpc-bus.proto.json')).build().grpcbus;
+  //var gbTree = protobuf.loadJson(require('./grpc-bus.proto.json')).build().grpcbus;
   return RSVP.hash({
     protoFileContents: fetchProtoFilePromise(this.protoFile),
+    gbProtoFileContents: fetchProtoFilePromise('grpc-bus.proto'),
     ws: wsPromise
   }).then(function(results) {
+    
+    var gbBuilder = protobuf.loadProto(results.gbProtoFileContents, null, 'grpc-bus.proto');
+    var gbTree = gbBuilder.build().grpcbus;
+    
     self.protoDefs = protobuf.loadProto(results.protoFileContents, null, self.protoFile);
     var initMessage = {
       filename: self.protoFile,
@@ -2678,7 +2306,7 @@ GBC.prototype.connect = function() {
     })
     console.log('packagePromises', packagePromises);
     var promiseHash = RSVP.hash(packagePromises)
-    console.log(promiseHash);
+    console.log('promiseHash', promiseHash);
     return promiseHash;
   }).then(function(results) {
     console.log('resolved services', results);
@@ -2691,7 +2319,7 @@ module.exports = GBC;
 
 // vim: tabstop=8 expandtab shiftwidth=2 softtabstop=2
 
-},{"./grpc-bus.proto.json":8,"grpc-bus":15,"protobufjs":29,"rsvp":30}],10:[function(require,module,exports){
+},{"grpc-bus":14,"protobufjs":28,"rsvp":29}],9:[function(require,module,exports){
 /*
  Copyright 2013-2014 Daniel Wirtz <dcode@dcode.io>
 
@@ -6439,7 +6067,7 @@ module.exports = GBC;
     return ByteBuffer;
 });
 
-},{"long":28}],11:[function(require,module,exports){
+},{"long":27}],10:[function(require,module,exports){
 "use strict";
 var Subject_1 = require('rxjs/Subject');
 var Call = (function () {
@@ -6571,7 +6199,7 @@ var Call = (function () {
 }());
 exports.Call = Call;
 
-},{"rxjs/Subject":33}],12:[function(require,module,exports){
+},{"rxjs/Subject":32}],11:[function(require,module,exports){
 "use strict";
 var service_1 = require('./service');
 // Hack: see if something is *probably* a namespace.
@@ -6731,14 +6359,14 @@ var Client = (function () {
 }());
 exports.Client = Client;
 
-},{"./service":14}],13:[function(require,module,exports){
+},{"./service":13}],12:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 __export(require('./client'));
 
-},{"./client":12}],14:[function(require,module,exports){
+},{"./client":11}],13:[function(require,module,exports){
 "use strict";
 var Subject_1 = require('rxjs/Subject');
 var call_1 = require('./call');
@@ -6901,7 +6529,7 @@ var Service = (function () {
 }());
 exports.Service = Service;
 
-},{"./call":11,"rxjs/Subject":33}],15:[function(require,module,exports){
+},{"./call":10,"rxjs/Subject":32}],14:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -6910,7 +6538,7 @@ __export(require('./server'));
 __export(require('./client'));
 __export(require('./proto'));
 
-},{"./client":13,"./proto":17,"./server":22}],16:[function(require,module,exports){
+},{"./client":12,"./proto":16,"./server":21}],15:[function(require,module,exports){
 "use strict";
 /* tslint:disable:trailing-comma */
 /* tslint:disable:quotemark */
@@ -7311,7 +6939,7 @@ exports.PROTO_DEFINITIONS = {
     "isNamespace": true
 };
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -7319,7 +6947,7 @@ function __export(m) {
 __export(require('./interfaces'));
 __export(require('./definitions'));
 
-},{"./definitions":16,"./interfaces":18}],18:[function(require,module,exports){
+},{"./definitions":15,"./interfaces":17}],17:[function(require,module,exports){
 "use strict";
 (function (ECreateServiceResult) {
     ECreateServiceResult[ECreateServiceResult["SUCCESS"] = 0] = "SUCCESS";
@@ -7334,7 +6962,7 @@ var ECreateServiceResult = exports.ECreateServiceResult;
 })(exports.ECreateCallResult || (exports.ECreateCallResult = {}));
 var ECreateCallResult = exports.ECreateCallResult;
 
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 "use strict";
 var Subject_1 = require('rxjs/Subject');
 var _ = require('lodash');
@@ -7473,7 +7101,7 @@ var Call = (function () {
 }());
 exports.Call = Call;
 
-},{"lodash":27,"rxjs/Subject":33}],20:[function(require,module,exports){
+},{"lodash":26,"rxjs/Subject":32}],19:[function(require,module,exports){
 "use strict";
 var call_1 = require('./call');
 // Store of all active calls for a client service.
@@ -7552,7 +7180,7 @@ var CallStore = (function () {
 }());
 exports.CallStore = CallStore;
 
-},{"./call":19}],21:[function(require,module,exports){
+},{"./call":18}],20:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 // GRPC methods copied from the GRPC codebase.
@@ -7632,14 +7260,14 @@ function loadObject(grpc, meta, options) {
 exports.loadObject = loadObject;
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":3,"lodash":27}],22:[function(require,module,exports){
+},{"buffer":3,"lodash":26}],21:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 __export(require('./server'));
 
-},{"./server":23}],23:[function(require,module,exports){
+},{"./server":22}],22:[function(require,module,exports){
 "use strict";
 var store_1 = require('./store');
 var call_store_1 = require('./call_store');
@@ -7767,7 +7395,7 @@ var Server = (function () {
 }());
 exports.Server = Server;
 
-},{"./call_store":20,"./store":26}],24:[function(require,module,exports){
+},{"./call_store":19,"./store":25}],23:[function(require,module,exports){
 "use strict";
 var Subject_1 = require('rxjs/Subject');
 var grpc_1 = require('./grpc');
@@ -7832,7 +7460,7 @@ var Service = (function () {
 }());
 exports.Service = Service;
 
-},{"./grpc":21,"lodash":27,"rxjs/Subject":33}],25:[function(require,module,exports){
+},{"./grpc":20,"lodash":26,"rxjs/Subject":32}],24:[function(require,module,exports){
 "use strict";
 // Generates a unique string identifier for service connection info.
 function buildServiceInfoIdentifier(info) {
@@ -7841,7 +7469,7 @@ function buildServiceInfoIdentifier(info) {
 }
 exports.buildServiceInfoIdentifier = buildServiceInfoIdentifier;
 
-},{}],26:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 "use strict";
 var service_info_1 = require('./service_info');
 var service_1 = require('./service');
@@ -7875,7 +7503,7 @@ var ServiceStore = (function () {
 }());
 exports.ServiceStore = ServiceStore;
 
-},{"./service":24,"./service_info":25}],27:[function(require,module,exports){
+},{"./service":23,"./service_info":24}],26:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -24963,7 +24591,7 @@ exports.ServiceStore = ServiceStore;
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],28:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 /*
  Copyright 2013 Daniel Wirtz <dcode@dcode.io>
  Copyright 2009 The Closure Library Authors. All Rights Reserved.
@@ -26174,7 +25802,7 @@ exports.ServiceStore = ServiceStore;
     return Long;
 });
 
-},{}],29:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 (function (process){
 /*
  Copyright 2013 Daniel Wirtz <dcode@dcode.io>
@@ -31401,7 +31029,7 @@ exports.ServiceStore = ServiceStore;
 });
 
 }).call(this,require('_process'))
-},{"_process":6,"bytebuffer":10,"fs":2,"path":2}],30:[function(require,module,exports){
+},{"_process":6,"bytebuffer":9,"fs":2,"path":2}],29:[function(require,module,exports){
 (function (process,global){
 /*!
  * @overview RSVP - a tiny implementation of Promises/A+.
@@ -33904,7 +33532,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":6}],31:[function(require,module,exports){
+},{"_process":6}],30:[function(require,module,exports){
 "use strict";
 var root_1 = require('./util/root');
 var toSubscriber_1 = require('./util/toSubscriber');
@@ -34034,7 +33662,7 @@ var Observable = (function () {
 }());
 exports.Observable = Observable;
 
-},{"./symbol/observable":37,"./util/root":45,"./util/toSubscriber":46}],32:[function(require,module,exports){
+},{"./symbol/observable":36,"./util/root":44,"./util/toSubscriber":45}],31:[function(require,module,exports){
 "use strict";
 exports.empty = {
     closed: true,
@@ -34043,7 +33671,7 @@ exports.empty = {
     complete: function () { }
 };
 
-},{}],33:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -34204,7 +33832,7 @@ var AnonymousSubject = (function (_super) {
 }(Subject));
 exports.AnonymousSubject = AnonymousSubject;
 
-},{"./Observable":31,"./SubjectSubscription":34,"./Subscriber":35,"./Subscription":36,"./symbol/rxSubscriber":38,"./util/ObjectUnsubscribedError":39}],34:[function(require,module,exports){
+},{"./Observable":30,"./SubjectSubscription":33,"./Subscriber":34,"./Subscription":35,"./symbol/rxSubscriber":37,"./util/ObjectUnsubscribedError":38}],33:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -34245,7 +33873,7 @@ var SubjectSubscription = (function (_super) {
 }(Subscription_1.Subscription));
 exports.SubjectSubscription = SubjectSubscription;
 
-},{"./Subscription":36}],35:[function(require,module,exports){
+},{"./Subscription":35}],34:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -34495,7 +34123,7 @@ var SafeSubscriber = (function (_super) {
     return SafeSubscriber;
 }(Subscriber));
 
-},{"./Observer":32,"./Subscription":36,"./symbol/rxSubscriber":38,"./util/isFunction":43}],36:[function(require,module,exports){
+},{"./Observer":31,"./Subscription":35,"./symbol/rxSubscriber":37,"./util/isFunction":42}],35:[function(require,module,exports){
 "use strict";
 var isArray_1 = require('./util/isArray');
 var isObject_1 = require('./util/isObject');
@@ -34649,7 +34277,7 @@ var Subscription = (function () {
 }());
 exports.Subscription = Subscription;
 
-},{"./util/UnsubscriptionError":40,"./util/errorObject":41,"./util/isArray":42,"./util/isFunction":43,"./util/isObject":44,"./util/tryCatch":47}],37:[function(require,module,exports){
+},{"./util/UnsubscriptionError":39,"./util/errorObject":40,"./util/isArray":41,"./util/isFunction":42,"./util/isObject":43,"./util/tryCatch":46}],36:[function(require,module,exports){
 "use strict";
 var root_1 = require('../util/root');
 function getSymbolObservable(context) {
@@ -34672,14 +34300,14 @@ function getSymbolObservable(context) {
 exports.getSymbolObservable = getSymbolObservable;
 exports.$$observable = getSymbolObservable(root_1.root);
 
-},{"../util/root":45}],38:[function(require,module,exports){
+},{"../util/root":44}],37:[function(require,module,exports){
 "use strict";
 var root_1 = require('../util/root');
 var Symbol = root_1.root.Symbol;
 exports.$$rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
     Symbol.for('rxSubscriber') : '@@rxSubscriber';
 
-},{"../util/root":45}],39:[function(require,module,exports){
+},{"../util/root":44}],38:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -34707,7 +34335,7 @@ var ObjectUnsubscribedError = (function (_super) {
 }(Error));
 exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
 
-},{}],40:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -34733,30 +34361,30 @@ var UnsubscriptionError = (function (_super) {
 }(Error));
 exports.UnsubscriptionError = UnsubscriptionError;
 
-},{}],41:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 "use strict";
 // typeof any so that it we don't have to cast when comparing a result to the error object
 exports.errorObject = { e: {} };
 
-},{}],42:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 "use strict";
 exports.isArray = Array.isArray || (function (x) { return x && typeof x.length === 'number'; });
 
-},{}],43:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 "use strict";
 function isFunction(x) {
     return typeof x === 'function';
 }
 exports.isFunction = isFunction;
 
-},{}],44:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 "use strict";
 function isObject(x) {
     return x != null && typeof x === 'object';
 }
 exports.isObject = isObject;
 
-},{}],45:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 (function (global){
 "use strict";
 /**
@@ -34772,7 +34400,7 @@ if (!exports.root) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],46:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 "use strict";
 var Subscriber_1 = require('../Subscriber');
 var rxSubscriber_1 = require('../symbol/rxSubscriber');
@@ -34793,7 +34421,7 @@ function toSubscriber(nextOrObserver, error, complete) {
 }
 exports.toSubscriber = toSubscriber;
 
-},{"../Observer":32,"../Subscriber":35,"../symbol/rxSubscriber":38}],47:[function(require,module,exports){
+},{"../Observer":31,"../Subscriber":34,"../symbol/rxSubscriber":37}],46:[function(require,module,exports){
 "use strict";
 var errorObject_1 = require('./errorObject');
 var tryCatchTarget;
@@ -34813,4 +34441,4 @@ function tryCatch(fn) {
 exports.tryCatch = tryCatch;
 ;
 
-},{"./errorObject":41}]},{},[7]);
+},{"./errorObject":40}]},{},[7]);
