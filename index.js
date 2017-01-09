@@ -49,11 +49,21 @@ GBC.prototype.connect = function() {
     }
     ws.onerror = reject;
   });
-  var gbTree = protobuf.loadJson(require('./grpc-bus.proto.json')).build().grpcbus;
+  //var gbTree = protobuf.loadJson(require('./grpc-bus.proto.json')).build().grpcbus;
+  // When loaded from the compiled JSON, the "create service" call's
+  // "result" field is being loaded as `null` rather than `0`, causing
+  // the response to be treated as an error.
+  // Workaround: load grpc-bus.proto asynchronously by downloading the
+  // uncompiled proto file insead
   return RSVP.hash({
     protoFileContents: fetchProtoFilePromise(this.protoFile),
+    gbProtoFileContents: fetchProtoFilePromise('grpc-bus.proto'),
     ws: wsPromise
   }).then(function(results) {
+
+    var gbBuilder = protobuf.loadProto(results.gbProtoFileContents, null, 'grpc-bus.proto');
+    var gbTree = gbBuilder.build().grpcbus;
+
     self.protoDefs = protobuf.loadProto(results.protoFileContents, null, self.protoFile);
     var initMessage = {
       filename: self.protoFile,
