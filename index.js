@@ -64,13 +64,15 @@ GBC.prototype.connect = function() {
     var gbClient = new grpcBus.Client(self.protoDefs, function(msg) {
       console.log('sending', msg);
       var pbMessage = new gbTree.GBClientMessage(msg)
-      ws.send(pbMessage.toBuffer());
+      var rawMessage = pbMessage.toBuffer();
+      console.log(new Uint8Array(rawMessage));
+      ws.send(rawMessage);
     });
     
     console.log('client', gbClient);
 
     ws.onmessage = function (event) {
-      console.log('received (raw)', event.data);
+      console.log('received (raw)', event.data, new Uint8Array(event.data));
       var message = gbTree.GBServerMessage.decode(event.data);
        console.log('received (parsed)', message);
       gbClient.handleMessage(message);
