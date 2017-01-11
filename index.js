@@ -59,7 +59,12 @@ GBC.prototype.connect = function() {
     protoFileContents: fetchProtoFilePromise(this.protoFile),
     ws: wsPromise
   }).then(function(results) {
-    self.protoDefs = protobuf.loadProto(results.protoFileContents, null, self.protoFile);
+    var protoFileExt = self.protoFile.substr(self.protoFile.lastIndexOf('.') + 1);
+    if (protoFileExt === "json") {
+      self.protoDefs = protobuf.loadJson(results.protoFileContents, null, self.protoFile);
+    } else {
+      self.protoDefs = protobuf.loadProto(results.protoFileContents, null, self.protoFile);
+    }
     var initMessage = {
       filename: self.protoFile,
       contents: results.protoFileContents
