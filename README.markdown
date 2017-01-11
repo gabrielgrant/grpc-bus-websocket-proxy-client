@@ -31,5 +31,13 @@ new GBC("ws://localhost:8080/", 'helloworld.proto', {helloworld: {Greeter: 'loca
   });
 ```
 
+For more complex proto defs that import other `.proto` files, the proto
+def tree should be compiled into a single JSON file using the `pbjs`
+command line utility included with the `protobufjs` lib from NPM.
 
+After installing `grpc-bus-websocket-client`, run the
+compilation from your project directory:
 
+```
+./node_modules/protobufjs/bin/pbjs helloworld.proto > helloworld.proto.json
+```
