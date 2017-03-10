@@ -20,7 +20,7 @@ function fetchProtoFilePromise(path) {
   var promise = new RSVP.Promise(function(resolve, reject) {
     protobuf.Util.fetch(path, function(protoFileContents) {
       if (protoFileContents === null) {
-        reject(Error(error));
+        reject(Error('Failed to fetch ' + path));
       } else {
         resolve(protoFileContents);
       }
