@@ -1,6 +1,6 @@
 {
   "name": "grpc-bus-websocket-client",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "This client library connects a browser's JavaScript context to standard GRPC service(s) via a WebSocket Proxy Server",
   "main": "index.js",
   "scripts": {
