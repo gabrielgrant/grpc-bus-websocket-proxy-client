@@ -44,7 +44,6 @@ GBC.prototype.connect = function() {
   ws.binaryType = "arraybuffer";  // We are talking binary
   var wsPromise = new RSVP.Promise(function(resolve, reject) {
     ws.onopen = function(){
-      console.log('opened');
       return resolve(ws);
     }
     ws.onerror = reject;
@@ -69,49 +68,33 @@ GBC.prototype.connect = function() {
       filename: self.protoFile,
       contents: results.protoFileContents
     };
-    console.log(initMessage);
     ws.send(JSON.stringify(initMessage));
     var gbClient = new grpcBus.Client(self.protoDefs, function(msg) {
-      console.log('sending', msg);
       var pbMessage = new gbTree.GBClientMessage(msg)
       var rawMessage = pbMessage.toBuffer();
-      console.log(new Uint8Array(rawMessage));
       ws.send(rawMessage);
     });
-    
-    console.log('client', gbClient);
 
     ws.onmessage = function (event) {
-      console.log('received (raw)', event.data, new Uint8Array(event.data));
       var message = gbTree.GBServerMessage.decode(event.data);
-       console.log('received (parsed)', message);
       gbClient.handleMessage(message);
     }
 
     var tree = self.tree = gbClient.buildTree();
-    console.log('tree', tree);
     var packagePromises = {};
-    console.log('serviceMap', self.serviceMap);
     var protoPackages = Object.keys(self.serviceMap);
-    console.log('protoPackages', protoPackages);
     protoPackages.forEach(function(protoPackageName) {
-      var servicesPromises = {}
-      console.log('protoPackageName', protoPackageName);
+      var servicesPromises = {};
       Object.keys(self.serviceMap[protoPackageName]).forEach(function(serviceName) {
-        console.log('serviceName', serviceName);
         var serviceConnector = tree[protoPackageName][serviceName];
         var serviceAddress = self.serviceMap[protoPackageName][serviceName];
         servicesPromises[serviceName] = serviceConnector(serviceAddress);
       });
-      console.log('servicesPromises', servicesPromises);
       packagePromises[protoPackageName] = RSVP.hash(servicesPromises)
     })
-    console.log('packagePromises', packagePromises);
     var promiseHash = RSVP.hash(packagePromises)
-    console.log('promiseHash', promiseHash);
     return promiseHash;
   }).then(function(results) {
-    console.log('resolved services', results);
     self.services = results;
     return self;
   });
