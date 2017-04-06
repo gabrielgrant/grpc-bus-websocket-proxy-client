@@ -26,6 +26,7 @@
   "dependencies": {
     "grpc-bus": "1.0.0",
     "protobufjs": "^5.0.1",
-    "rsvp": "^3.3.3"
+    "rsvp": "^3.3.3",
+    "universal-websocket-client": "^1.0.1"
   }
 }

@@ -7,6 +7,7 @@
 var grpcBus = require('grpc-bus');
 var protobuf = require("protobufjs");
 var RSVP = require('rsvp');
+var WebSocket = require('universal-websocket-client');
 
 // sane error handling
 RSVP.on('error', function(reason, label) {
