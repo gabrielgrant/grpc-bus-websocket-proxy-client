@@ -41,9 +41,9 @@ var GBC = function(proxyURL, protoFile, serviceMap) {
 
 GBC.prototype.connect = function() {
   var self = this;
-  var ws = this.ws = new WebSocket(this.proxyURL);
-  ws.binaryType = "arraybuffer";  // We are talking binary
   var wsPromise = new RSVP.Promise(function(resolve, reject) {
+    var ws = this.ws = new WebSocket(this.proxyURL);
+    ws.binaryType = "arraybuffer";  // We are talking binary
     ws.onopen = function(){
       return resolve(ws);
     }
