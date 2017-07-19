@@ -6,7 +6,7 @@ release:
 
 demo : demo/bundle.js
 
-demo/bundle.js : demo/demo.js
+demo/bundle.js : demo/demo.js index.js
 	browserify demo/demo.js -o demo/bundle.js
 
 clean:
