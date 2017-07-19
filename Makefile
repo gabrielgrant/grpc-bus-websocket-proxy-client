@@ -1,3 +1,9 @@
+.PHONY: release
+
+release:
+	npm version patch
+	npm publish
+
 demo : demo/bundle.js
 
 demo/bundle.js : demo/demo.js
