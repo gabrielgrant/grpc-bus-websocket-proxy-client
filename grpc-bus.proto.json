@@ -1,8 +1,10 @@
 {
     "package": "grpcbus",
+    "syntax": "proto2",
     "messages": [
         {
             "name": "GBClientMessage",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -38,6 +40,7 @@
         },
         {
             "name": "GBServerMessage",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -73,6 +76,7 @@
         },
         {
             "name": "GBServiceInfo",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -90,6 +94,7 @@
         },
         {
             "name": "GBCreateService",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -107,6 +112,7 @@
         },
         {
             "name": "GBReleaseService",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -117,7 +123,20 @@
             ]
         },
         {
+            "name": "GBMetadataValues",
+            "syntax": "proto3",
+            "fields": [
+                {
+                    "rule": "repeated",
+                    "type": "string",
+                    "name": "values",
+                    "id": 1
+                }
+            ]
+        },
+        {
             "name": "GBCallInfo",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -130,11 +149,19 @@
                     "type": "bytes",
                     "name": "bin_argument",
                     "id": 2
+                },
+                {
+                    "rule": "map",
+                    "type": "GBMetadataValues",
+                    "keytype": "string",
+                    "name": "metadata",
+                    "id": 3
                 }
             ]
         },
         {
             "name": "GBCreateCall",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -158,6 +185,7 @@
         },
         {
             "name": "GBCallEnded",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -175,6 +203,7 @@
         },
         {
             "name": "GBEndCall",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -192,6 +221,7 @@
         },
         {
             "name": "GBSendCall",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -221,6 +251,7 @@
         },
         {
             "name": "GBCreateServiceResult",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -244,6 +275,7 @@
             "enums": [
                 {
                     "name": "ECreateServiceResult",
+                    "syntax": "proto3",
                     "values": [
                         {
                             "name": "SUCCESS",
@@ -263,6 +295,7 @@
         },
         {
             "name": "GBReleaseServiceResult",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -274,6 +307,7 @@
         },
         {
             "name": "GBCreateCallResult",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -303,6 +337,7 @@
             "enums": [
                 {
                     "name": "ECreateCallResult",
+                    "syntax": "proto3",
                     "values": [
                         {
                             "name": "SUCCESS",
@@ -322,6 +357,7 @@
         },
         {
             "name": "GBCallEvent",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -357,6 +393,7 @@
         },
         {
             "name": "GBCallEnd",
+            "syntax": "proto3",
             "fields": [
                 {
                     "rule": "optional",
@@ -372,5 +409,6 @@
                 }
             ]
         }
-    ]
+    ],
+    "isNamespace": true
 }
