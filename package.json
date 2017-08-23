@@ -4,7 +4,7 @@
   "description": "This client library connects a browser's JavaScript context to standard GRPC service(s) via a WebSocket Proxy Server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "update-proto": "node ./scripts/proto_to_js.js > grpc-bus.proto.js"
   },
   "repository": {
     "type": "git",
