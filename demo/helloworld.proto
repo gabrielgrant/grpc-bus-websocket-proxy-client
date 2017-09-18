@@ -39,7 +39,8 @@ package helloworld;
 service Greeter {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {}
-  rpc StreamOutHello (HelloStreamRequest) returns (stream HelloReply) {}
+  rpc StreamOutHello (HelloStreamOutRequest) returns (stream HelloReply) {}
+  rpc StreamInHello(stream HelloStreamInRequest) returns (HelloStreamInResponse) {}
 }
 
 // The request message containing the user's name.
@@ -52,7 +53,15 @@ message HelloReply {
   string message = 1;
 }
 
-message HelloStreamRequest {
+message HelloStreamOutRequest {
   string name = 1;
   int32 iterations = 2;
+}
+
+message HelloStreamInRequest {
+  string name = 1;
+}
+
+message HelloStreamInResponse {
+  string name = 1;
 }
