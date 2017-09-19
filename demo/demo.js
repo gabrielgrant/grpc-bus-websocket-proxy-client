@@ -5,6 +5,10 @@
 var GBC = require("../index.js");
 var async = require("async");
 
+var metadata = {
+   "foodsILike": ["french fries", "donuts"]
+};
+
 new GBC("ws://localhost:8081/", 'helloworld.proto', {helloworld: {Greeter: 'localhost:50051'}})
   .connect()
   .then(function(gbc) {
@@ -16,7 +20,7 @@ new GBC("ws://localhost:8081/", 'helloworld.proto', {helloworld: {Greeter: 'loca
       console.log(data);
     });
 
-    var call = gbc.services.helloworld.Greeter.streamInHello(function(error, data) {
+    var call = gbc.services.helloworld.Greeter.streamInHello(null, metadata, function(error, data) {
       if (error) {
         console.log("error:", error);
       }
@@ -25,7 +29,6 @@ new GBC("ws://localhost:8081/", 'helloworld.proto', {helloworld: {Greeter: 'loca
         
     function nameSender(name) {
       return function(callback) {
-        console.log("sending name:", name);
         call.write({
           name: name
         });
@@ -37,7 +40,6 @@ new GBC("ws://localhost:8081/", 'helloworld.proto', {helloworld: {Greeter: 'loca
     lastName = nameSender('Grant');
 
     async.series([firstName, lastName], function() {
-      console.log("Finished sending names ... closing call");
       call.end();
     });
 
