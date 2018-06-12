@@ -1,6 +1,6 @@
 GRPC-Bus WebSocket Proxy Client
 
-This client library connects a browser's JavaScript context to standard GRPC service(s) via a WebSocket Proxy Server
+This client library connects a browser's JavaScript context to standard GRPC service(s) via a WebSocket Proxy Server with full support for bi-directional streaming (ie both [server-initiated](https://github.com/gabrielgrant/grpc-bus-websocket-proxy-client/blob/master/demo/demo.js#L23) or [client-initiated](https://github.com/gabrielgrant/grpc-bus-websocket-proxy-client/blob/master/demo/demo.js#L23))
 
 
 Install
